@@ -91,7 +91,7 @@ export const PromptGenerator = () => {
             <div className="h-px flex-1 bg-border" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight mb-2 text-foreground">
-            Prompt Architect 
+            Anisora - A Prompt Architect 
           </h1>
           <p className="text-muted-foreground text-sm max-w-xl">
             Configure system parameters to synthesize high-precision language models.

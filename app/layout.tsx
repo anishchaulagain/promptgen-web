@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prompt Architect - Generate high-precision prompts for language models",
-  description: "Generate high-precision prompts for language models with Prompt Architect",
+  title: "Anisora - A Prompt Architect",
+  description: "Generate high-precision prompts for language models with Anisora",
 };
 
 export default function RootLayout({
