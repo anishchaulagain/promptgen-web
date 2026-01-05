@@ -12,13 +12,13 @@ export const SelectableBadge = ({ label, selected, onClick }: SelectableBadgePro
     <motion.button
       type="button"
       onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
       className={cn(
-        "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 border",
+        "px-5 py-2.5 rounded-xl cursor-pointer font-semibold text-sm transition-all duration-300 border-2",
         selected
-          ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20"
-          : "bg-badge text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+          ? "bg-primary text-primary-foreground border-primary shadow-xl shadow-primary/30 scale-105"
+          : "bg-white/5 dark:bg-black/20 text-muted-foreground border-transparent hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
       )}
     >
       {label}
