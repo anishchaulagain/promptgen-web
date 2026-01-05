@@ -213,7 +213,7 @@ export const PromptGenerator = () => {
                   <SelectTrigger className="w-full bg-white dark:bg-black border-border/50 h-11 rounded-xl">
                     <SelectValue placeholder="Select context" />
                   </SelectTrigger>
-                  <SelectContent className="bg-glass border-border">
+                  <SelectContent className="bg-white dark:bg-black border-border">
                     {PROMPT_TYPES.map((type) => (
                       <SelectItem key={type} value={type} className="capitalize py-3">
                         {type}
@@ -237,7 +237,7 @@ export const PromptGenerator = () => {
                   <SelectTrigger className="w-full bg-white dark:bg-black border-border/50 h-11 rounded-xl">
                     <SelectValue placeholder="Select depth" />
                   </SelectTrigger>
-                  <SelectContent className="bg-glass border-border">
+                  <SelectContent className="bg-white dark:bg-black border-border">
                     {COMPLEXITIES.map((level) => (
                       <SelectItem key={level} value={level} className="capitalize py-3">
                         {level}
