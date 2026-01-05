@@ -281,7 +281,7 @@ export const PromptGenerator = () => {
                 ) : (
                   <div className="flex items-center gap-3">
                     <Wand2 className="w-6 h-6" />
-                    Forge Prompt
+                    Generate Prompt
                   </div>
                 )}
               </Button>
