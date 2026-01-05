@@ -27,11 +27,11 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-8 rounded-3xl bg-glass overflow-hidden relative"
+        className="p-6 md:p-8 rounded-3xl bg-glass overflow-hidden relative"
       >
         <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-primary to-chart-2 animate-pulse" />
         <div className="flex items-center gap-4 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -58,7 +58,7 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="p-10 rounded-3xl bg-glass border-dashed border-2 border-border/50 text-center group hover:border-primary/30 transition-colors"
+        className="p-8 md:p-10 rounded-3xl bg-glass border-dashed border-2 border-border/50 text-center group hover:border-primary/30 transition-colors"
       >
         <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <Sparkles className="w-8 h-8 text-muted-foreground/30" />
@@ -77,31 +77,31 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="relative p-8 rounded-3xl bg-glass shadow-2xl shadow-primary/5 group border border-primary/10 overflow-hidden"
+      className="relative p-5 sm:p-6 md:p-8 rounded-3xl bg-glass shadow-2xl shadow-primary/5 group border border-primary/10 overflow-hidden"
     >
       {/* Decorative background scanline effect */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-size-[100%_2px,3px_100%]" />
 
-      <div className="flex items-center justify-between mb-8 relative z-10">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 relative z-10 gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shadow-inner">
+          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shadow-inner shrink-0">
             <Sparkles className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-0.5">
-              <h3 className="font-bold text-lg text-foreground tracking-tight">Synthesized Architecture</h3>
+              <h3 className="font-bold mr-4 sm:mr-0  text-lg text-foreground tracking-tight">Synthesized</h3>
               <div className="px-1.5 py-0.5 rounded-md bg-green-500/10 text-green-500 text-[10px] font-black uppercase tracking-widest border border-green-500/20">
                 Validated
               </div>
             </div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">Model Optimized for {prompt.platform}</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">Model: {prompt.platform}</p>
           </div>
         </div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
           <Button
             onClick={handleCopy}
             className={cn(
-              "h-11 px-6 rounded-xl cursor-pointer font-bold transition-all duration-300 gap-2 shadow-xl",
+              "h-11 px-6 w-full sm:w-auto rounded-xl cursor-pointer font-bold transition-all duration-300 gap-2 shadow-xl",
               copied
                 ? "bg-green-600 hover:bg-green-700 text-white shadow-green-500/20"
                 : "bg-primary text-primary-foreground shadow-primary/20"
@@ -113,7 +113,7 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
             ) : (
               <Copy className="w-5 h-5 opacity-80" />
             )}
-            {copied ? "Copied to Clipboard" : "Copy Architecture"}
+            {copied ? "Copied" : "Copy Architecture"}
           </Button>
         </motion.div>
       </div>
@@ -130,14 +130,14 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
             </div>
             <span className="text-[10px] text-muted-foreground/40 font-bold uppercase tracking-widest">Neural.cfg</span>
           </div>
-          <div className="p-6 md:p-8 whitespace-pre-wrap min-h-[160px] max-h-[500px] overflow-y-auto custom-scrollbar">
+          <div className="p-4 sm:p-6 md:p-8 whitespace-pre-wrap min-h-[160px] max-h-[500px] overflow-y-auto custom-scrollbar">
             {prompt?.prompt}
           </div>
         </div>
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-6 relative z-10 border-t border-border/40 pt-6">
-        <div className="flex flex-col gap-1">
+      <div className="mt-8 flex flex-wrap items-center gap-y-4 gap-x-6 relative z-10 border-t border-border/40 pt-6">
+        <div className="flex flex-col gap-1 w-[45%] sm:w-auto">
           <span className="text-[10px] text-muted-foreground/50 font-black uppercase tracking-widest">Complexity</span>
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map(i => (
@@ -146,12 +146,12 @@ export const PromptOutput = ({ prompt, isLoading }: PromptOutputProps) => {
           </div>
         </div>
         <div className="h-8 w-px bg-border/40 hidden sm:block" />
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-0.5 w-[45%] sm:w-auto">
           <span className="text-[10px] text-muted-foreground/50 font-black uppercase tracking-widest">Token Density</span>
           <span className="text-xs font-mono font-bold">~{prompt.prompt.split(' ').length * 1.3 | 0} Units</span>
         </div>
         <div className="h-8 w-px bg-border/40 hidden sm:block" />
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-0.5 w-full sm:w-auto">
           <span className="text-[10px] text-muted-foreground/50 font-black uppercase tracking-widest">Inference Pass</span>
           <span className="text-xs font-mono font-bold text-primary">S-Tier Optimized</span>
         </div>
