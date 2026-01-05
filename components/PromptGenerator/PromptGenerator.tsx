@@ -91,7 +91,7 @@ export const PromptGenerator = () => {
             <div className="h-px flex-1 bg-border" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight mb-2 text-foreground">
-            Anisora - A Prompt Architect 
+            Anisora - AI Prompt Architect 
           </h1>
           <p className="text-muted-foreground text-sm max-w-xl">
             Configure system parameters to synthesize high-precision language models.
@@ -121,7 +121,7 @@ export const PromptGenerator = () => {
                 id="goal"
                 value={formData.goal}
                 onChange={(e) => setFormData((prev) => ({ ...prev, goal: e.target.value }))}
-                placeholder="Enter your raw prompt here..."
+                placeholder="What's on your mind?"
                 className="min-h-[160px] bg-white/5 dark:bg-black/20 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all text-lg leading-relaxed placeholder:text-muted-foreground/50 resize-none rounded-2xl"
               />
             </div>
@@ -323,7 +323,7 @@ export const PromptGenerator = () => {
           transition={{ delay: 0.5 }}
           className="text-center text-sm text-muted-foreground/60 mt-16 pb-12"
         >
-          &copy; 2026 Prompt Architect Engine. All parameters optimized for Gemini Performance.
+          &copy; 2026 Anisora - AI Prompt Architect. All parameters optimized for AI Performance.
         </motion.p>
       </div>
     </div>

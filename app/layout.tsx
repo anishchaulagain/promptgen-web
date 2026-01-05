@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anisora - A Prompt Architect",
+  title: "Anisora - AI Prompt Architect",
   description: "Generate high-precision prompts for language models with Anisora",
 };
 
