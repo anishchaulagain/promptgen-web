@@ -10,7 +10,9 @@ const app = axios.create({
 app.interceptors.response.use(
     (response) => response,
     (error) => {
-        throw error;
+        const { detail } = error.response.data;
+        console.log("API Error:", detail);
+        return Promise.reject(error);
     }
 )
 

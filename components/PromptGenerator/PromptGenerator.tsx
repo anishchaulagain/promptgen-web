@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Wand2, Settings2, Target, MessageSquare, Layers, AlertCircle } from "lucide-react";
-import { SelectableBadge } from "./SelectableBadge"; 
+import { SelectableBadge } from "./SelectableBadge";
 import { ConstraintInput } from "./ConstraintInput";
 import { PromptOutput } from "./PromptOutput";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { usePrompt } from "@/hooks/usePrompt";
 import { PromptGenResponse } from "@/types/PromptGen";
+import { Textarea } from "../ui/textarea";
 
 const PLATFORMS = ["ChatGPT", "Claude", "Gemini", "Llama", "Mistral", "GPT-4", "Custom"];
 const TONES = ["Neutral", "Professional", "Friendly", "Technical", "Creative", "Formal", "Casual"];
@@ -38,18 +39,15 @@ const defaultFormData: FormData = {
 export const PromptGenerator = () => {
   const [formData, setFormData] = useState<FormData>(defaultFormData)
 
-  const [generatedPrompt, setGeneratedPrompt] = useState<PromptGenResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const {generatePrompt, prompt, loading, error} = usePrompt()
+  const { generatePrompt, prompt, loading, error } = usePrompt()
 
   const handleGenerate = async () => {
-    setIsLoading(true);
-    await generatePrompt(formData)
-    setGeneratedPrompt(prompt)
-    console.log(formData);
-    console.log(prompt)
-    setFormData(defaultFormData)
-    setIsLoading(false);
+    const result = await generatePrompt(formData);
+    console.log("Form Data:", formData);
+    console.log("Response:", result);
+    // if (result?.platform) {
+    //   setFormData(defaultFormData);
+    // }
   };
 
   const isFormValid = formData.platform && formData.goal;
@@ -101,7 +99,7 @@ export const PromptGenerator = () => {
                 Goal
               </Label>
             </div>
-            <Input
+            <Textarea
               id="goal"
               value={formData.goal}
               onChange={(e) => setFormData((prev) => ({ ...prev, goal: e.target.value }))}
@@ -192,16 +190,16 @@ export const PromptGenerator = () => {
           <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
             <Button
               onClick={handleGenerate}
-              disabled={!isFormValid || isLoading}
+              disabled={!isFormValid || loading}
               className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base shadow-lg shadow-primary/25 disabled:opacity-50 disabled:shadow-none"
             >
               <Wand2 className="w-5 h-5 mr-2" />
-              {isLoading ? "Generating..." : "Generate Prompt"}
+              {loading ? "Generating..." : "Generate Prompt"}
             </Button>
           </motion.div>
 
           {/* Output */}
-          <PromptOutput prompt={generatedPrompt} isLoading={isLoading} />
+          <PromptOutput prompt={prompt} isLoading={loading} />
         </motion.div>
 
         {/* Footer */}
