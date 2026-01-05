@@ -13,7 +13,7 @@ export const ConstraintInput = ({ constraints, onChange }: ConstraintInputProps)
   const [inputValue, setInputValue] = useState("");
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && inputValue.trim()) {
+    if (e.key === "Enter" || e.key === "Tab" && inputValue.trim()) {
       e.preventDefault();
       if (!constraints.includes(inputValue.trim())) {
         onChange([...constraints, inputValue.trim()]);
@@ -30,36 +30,43 @@ export const ConstraintInput = ({ constraints, onChange }: ConstraintInputProps)
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
+
+      <div className="relative group">
+        <Input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="New constraint... (Enter to add, Tab to add multiple)"
+          className="h-12 bg-white/5 dark:bg-black/20 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl pl-4 placeholder:text-muted-foreground/40"
+        />
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-md bg-muted text-[10px] font-bold text-muted-foreground opacity-0 group-focus-within:opacity-100 transition-opacity uppercase tracking-wider">
+          Enter
+        </div>
+      </div>
       <div className="flex flex-wrap gap-2 min-h-[40px]">
         <AnimatePresence mode="popLayout">
           {constraints.map((constraint, index) => (
             <motion.span
               key={constraint}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/10 text-primary text-sm font-medium border border-primary/20"
+              layout
+              initial={{ opacity: 0, scale: 0.5, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.5, y: -10 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary text-sm font-bold border border-primary/20 shadow-sm"
             >
               {constraint}
               <button
                 type="button"
                 onClick={() => removeConstraint(index)}
-                className="hover:bg-primary/20 rounded-full p-0.5 transition-colors"
+                className="hover:bg-primary/20 rounded-lg p-1 transition-colors group"
               >
-                <X className="w-3 h-3" />
+                <X className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
               </button>
             </motion.span>
           ))}
         </AnimatePresence>
       </div>
-      <Input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Type a constraint and press Enter..."
-        className="bg-surface-elevated border-border focus:border-primary/50 focus:ring-primary/20"
-      />
     </div>
   );
 };
