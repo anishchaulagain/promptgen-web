@@ -108,7 +108,7 @@ export const PromptGenerator = () => {
             className="space-y-6"
           >
             {/* Goal Input Section */}
-            <div className="bg-glass p-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5">
+            <div className="bg-glass p-4 md:p-6 sm:p-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                   <Target className="w-5 h-5" />
@@ -210,7 +210,7 @@ export const PromptGenerator = () => {
                   value={formData.prompt_type}
                   onValueChange={(value) => setFormData((prev) => ({ ...prev, prompt_type: value }))}
                 >
-                  <SelectTrigger className="w-full bg-white/5 dark:bg-black/20 border-border/50 h-11 rounded-xl">
+                  <SelectTrigger className="w-full bg-white dark:bg-black border-border/50 h-11 rounded-xl">
                     <SelectValue placeholder="Select context" />
                   </SelectTrigger>
                   <SelectContent className="bg-glass border-border">
@@ -234,7 +234,7 @@ export const PromptGenerator = () => {
                   value={formData.complexity}
                   onValueChange={(value) => setFormData((prev) => ({ ...prev, complexity: value }))}
                 >
-                  <SelectTrigger className="w-full bg-white/5 dark:bg-black/20 border-border/50 h-11 rounded-xl">
+                  <SelectTrigger className="w-full bg-white dark:bg-black border-border/50 h-11 rounded-xl">
                     <SelectValue placeholder="Select depth" />
                   </SelectTrigger>
                   <SelectContent className="bg-glass border-border">
